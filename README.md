@@ -45,7 +45,7 @@ Hopefully you can be less messy than me :)
 
  * Upload the `arduino` sketch.
  * Upload the `api` to the web server (the root must point to the `www` directory)
- * Call `http://omega:8080/index.php/sensors?id=0` in a browser
+ * Call `http://omega:8080/index.php/sensors/0` in a browser
 
 ### Debugging on serial line
 

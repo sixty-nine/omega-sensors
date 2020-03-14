@@ -16,7 +16,7 @@ class SensorsController
     public function index($request, $response, $service)
     {
         $service->validateParam('id', 'Invalid ID')->isInt();
-        $id = $request->paramsGet()->get('id');
+        $id = $request->paramsNamed()->get('id');
 
         $response->header('Content-Type', 'application/json');
 

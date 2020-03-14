@@ -28,7 +28,7 @@ $klein->respond(static function () use ($klein) {
     });
 });
 
-$klein->respond('GET', '/sensors', [$controller, 'index']);
+$klein->respond('GET', '/sensors/[:id]', [$controller, 'index']);
 
 $klein->respond(function($request, $response, $service, $app, $klein, $matched) {
     if (!$matched->count()) {
