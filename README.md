@@ -11,6 +11,9 @@ A working Onion Omega2+ with Arduino:
   * It must run PHP on uhttpd
   * The Arduino can be flashed over WiFi
 
+There are some instructions [here](https://github.com/sixty-nine/onion-omega2). But
+the official doc is your best friend.
+
 ## Hardware
 
 ### Components
@@ -70,3 +73,16 @@ config 'uhttpd' 'api'
     option cert '/etc/uhttpd.crt'
     option key '/etc/uhttpd.key'
 ```
+
+## Modifying the code
+
+### Arduino
+
+You probably know more than me about C++.
+
+### PHP
+
+You will need to install PHP mods on the Omega. Your task will be to find out which one :)
+
+Technically `composer` can run on the Omega2 with few hacks. In real, it's extremely
+slow. I'd advice you to execute it on your host, and then upload the whole to the Omega.
