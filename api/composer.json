@@ -1,0 +1,15 @@
+{
+    "name": "root/omega-api",
+    "type": "project",
+    "minimum-stability": "dev",
+    "require": {
+        "tecnoready/php-serial": "dev-master",
+        "klein/klein": "dev-master",
+        "ext-json": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "SixtyNine\\": "src/SixtyNine/"
+        }
+    }
+}
