@@ -46,6 +46,7 @@ Hopefully you can be less messy than me :)
  * Upload the `arduino` sketch.
  * Upload the `api` to the web server (the root must point to the `www` directory)
  * Call `http://omega:8080/index.php/sensors/0` in a browser
+ * Dashboard: `http://omega:8080/index.php`
 
 ### Debugging on serial line
 
@@ -73,6 +74,28 @@ config 'uhttpd' 'api'
     option cert '/etc/uhttpd.crt'
     option key '/etc/uhttpd.key'
 ```
+
+### Interface with ThingSpeak
+
+This will send the values of the sensors to ThingsSpeak every 10 minutes.
+
+You need to copy the `.env.example` file to `.env`.
+
+Then make sure this command does not produce an error:
+
+```
+php-cli /home/dev/omega-api/bin/cli update-thingspeak
+```
+
+Finally edit your crontab with `crontab -e`.
+
+```
+#
+*/10 * * * * php-cli /home/dev/omega-api/bin/cli update-thingspeak 
+#
+```
+
+Don't forget to restart CRON: `/etc/init.d/cron restart`
 
 ## Modifying the code
 

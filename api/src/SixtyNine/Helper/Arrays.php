@@ -2,8 +2,6 @@
 
 namespace SixtyNine\Helper;
 
-use Webmozart\Assert\Assert;
-
 class Arrays
 {
     public function setValue(array &$data, array $indexes, $value): void

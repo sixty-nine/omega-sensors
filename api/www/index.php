@@ -4,28 +4,11 @@ require_once(__DIR__.'/../vendor/autoload.php');
 
 define('APP_PATH', '/index.php');
 
-use Doctrine\DBAL\Configuration;
-use Doctrine\DBAL\DriverManager;
-use Dotenv\Dotenv;
-use Dotenv\Exception\ValidationException;
 use Klein\Klein;
 use Klein\Request;
 use SixtyNine\Helper\Arduino;
 use SixtyNine\Controller\SensorsController;
 use SixtyNine\Controller\AssetsController;
-
-const DB_URL = '';
-
-$dotenv = Dotenv::create(__DIR__.'/../');
-$dotenv->load();
-
-try {
-
-    $dotenv->required('DATABASE_URL')->notEmpty();
-
-} catch (ValidationException $ex) {
-    die('You miss values in your .env file: '.$ex->getMessage());
-}
 
 $arduino = new Arduino('/dev/ttyS1');
 $sensorsController = new SensorsController($arduino);

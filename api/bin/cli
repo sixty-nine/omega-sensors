@@ -1,0 +1,31 @@
+#!/usr/bin/php-cli
+<?php
+
+use Dotenv\Dotenv;
+use Dotenv\Exception\ValidationException;
+use Symfony\Component\Console\Application;
+use SixtyNine\Command;
+
+require_once __DIR__.'/../vendor/autoload.php';
+
+$dotenv = Dotenv::create(__DIR__.'/../');
+$dotenv->load();
+
+try {
+
+    $dotenv->required('THINGSPEAK_API_KEY')->notEmpty();
+
+} catch (ValidationException $ex) {
+    die('You miss values in your .env file: '.$ex->getMessage());
+}
+
+$app = new Application();
+
+$commands = [
+    new Command\UpdateThingspeakCommand(),
+];
+
+$app->addCommands($commands);
+
+$app->run();
+

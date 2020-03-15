@@ -2,6 +2,7 @@
 
 namespace SixtyNine\Controller;
 
+use GuzzleHttp\Client;
 use SixtyNine\Helper\Arduino;
 use SixtyNine\Helper\Arrays;
 
@@ -16,12 +17,16 @@ class SensorsController
 
     public function index($request, $response, $service, $app)
     {
+        $lightsData = $this->arduino->getLight();
+        $dhtData = $this->arduino->getDht();
+        $dallasData = $this->arduino->getDallas();
+
         $service->arrays = new Arrays();
         $service->render(__DIR__.'/../views/dashboard.phtml', [
             'data' => [
-                'light' => $this->arduino->getLight(),
-                'dht' => $this->arduino->getDht(),
-                'dallas' => $this->arduino->getDallas(),
+                'light' => $lightsData,
+                'dht' => $dhtData,
+                'dallas' => $dallasData,
             ]
         ]);
     }
@@ -42,7 +47,7 @@ class SensorsController
             case '1': return json_encode($this->arduino->getLight());
             case '2': return json_encode($this->arduino->getDht());
             case '3': return json_encode($this->arduino->getDallas());
-            default: throw new RuntimeException("Invalid ID");
+            default: throw new \RuntimeException('Invalid ID');
         }
     }
 }
