@@ -55,12 +55,15 @@
     </div>
 </div>
 
+<?php
+$apiKey = getenv('THINGSPEAK_API_KEY')
+?>
 
 <div class="graphs">
-    <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1020028/charts/2?bgcolor=%23ffffff&color=%23f56342&dynamic=true&results=60&title=IN+Temperature&type=line&yaxis=%C2%B0C"></iframe>
-    <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1020028/charts/3?bgcolor=%23ffffff&color=%2342cbf5&dynamic=true&results=60&title=IN+Humidity&type=line&yaxis=%25"></iframe>
-    <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1020028/charts/1?average=10&bgcolor=%23ffffff&color=%23f5bf42&dynamic=true&results=60&title=IN+Luminosity&type=step&yaxis=lux"></iframe>
-    <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1020028/charts/4?bgcolor=%23ffffff&color=%23f56342&dynamic=true&results=60&title=OUT+Temperature&type=line&yaxis=%C2%B0C"></iframe>
+    <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1020028/charts/2?bgcolor=%23ffffff&color=%23f56342&dynamic=true&results=60&title=IN+Temperature&type=line&yaxis=%C2%B0C&api_key=<?= $apiKey ?>"></iframe>
+    <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1020028/charts/3?bgcolor=%23ffffff&color=%2342cbf5&dynamic=true&results=60&title=IN+Humidity&type=line&yaxis=%25&api_key=<?= $apiKey ?>"></iframe>
+    <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1020028/charts/1?average=10&bgcolor=%23ffffff&color=%23f5bf42&dynamic=true&results=60&title=IN+Luminosity&type=step&yaxis=lux&api_key=<?= $apiKey ?>"></iframe>
+    <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1020028/charts/4?bgcolor=%23ffffff&color=%23f56342&dynamic=true&results=60&title=OUT+Temperature&type=line&yaxis=%C2%B0C&api_key=<?= $apiKey ?>"></iframe>
 </div>
 
 <script type="text/javascript">

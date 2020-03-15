@@ -1,3 +1,6 @@
+#ifndef Timer_h
+#define Timer_h
+
 typedef void (*TimerCallback)(void);
 
 class Timer {
@@ -10,3 +13,5 @@ class Timer {
         unsigned long _prevMillis = 0;
         unsigned long _interval = 500;
 };
+
+#endif
