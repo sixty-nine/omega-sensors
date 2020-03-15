@@ -3,6 +3,7 @@
 namespace SixtyNine\Controller;
 
 use SixtyNine\Helper\Arduino;
+use SixtyNine\Helper\Arrays;
 
 class SensorsController
 {
@@ -13,7 +14,19 @@ class SensorsController
         $this->arduino = $arduino;
     }
 
-    public function index($request, $response, $service)
+    public function index($request, $response, $service, $app)
+    {
+        $service->arrays = new Arrays();
+        $service->render(__DIR__.'/../views/dashboard.phtml', [
+            'data' => [
+                'light' => $this->arduino->getLight(),
+                'dht' => $this->arduino->getDht(),
+                'dallas' => $this->arduino->getDallas(),
+            ]
+        ]);
+    }
+
+    public function sensors($request, $response, $service, $app)
     {
         $service->validateParam('id', 'Invalid ID')->isInt();
         $id = $request->paramsNamed()->get('id');

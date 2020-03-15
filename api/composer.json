@@ -3,8 +3,13 @@
     "type": "project",
     "minimum-stability": "dev",
     "require": {
+        "php" : "^7.1",
         "tecnoready/php-serial": "dev-master",
-        "klein/klein": "dev-master",
+        "klein/klein": "v2.1.2",
+        "doctrine/dbal": "^2.10",
+        "vlucas/phpdotenv": "^3.4",
+        "webmozart/assert": "^1.4",
+        "monolog/monolog": "^1.24",
         "ext-json": "*"
     },
     "autoload": {

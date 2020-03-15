@@ -62,9 +62,9 @@ class Arduino
             'metadata' => [
                 'sensor' => 'dht',
                 'units' => [
-                    'voltage' => '°C',
-                    'resistor' => '%',
-                    'intensity' => '°C',
+                    'temperature' => '°C',
+                    'humidity' => '%',
+                    'heatIndex' => '°C',
                 ],
             ],
         ];
@@ -82,7 +82,7 @@ class Arduino
             'metadata' => [
                 'sensor' => 'dallas',
                 'units' => [
-                    'voltage' => '°C',
+                    'temperature' => '°C',
                 ],
             ],
         ];

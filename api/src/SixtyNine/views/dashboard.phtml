@@ -1,0 +1,124 @@
+<link href="https://fonts.googleapis.com/css?family=Roboto|Syncopate:700&display=swap" rel="stylesheet">
+
+<style>
+.main-title {
+    text-align: center;
+    font-family: 'Syncopate', sans-serif;
+}
+.dashboard {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
+}
+.light-on {
+    color: yellowgreen;
+}
+.light-off {
+    color: indianred;
+}
+.title {
+    text-align: center;
+    font-size: small;
+    padding: 5px;
+    background-color: darkorange;
+    font-weight: bold;
+}
+
+.panel {
+    min-width: 200px;
+    margin: 10px;
+    border: 1px solid darkorange;
+    border-radius: 5px;
+}
+
+.values {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 25px;
+    text-align: center;
+}
+
+.label {
+}
+
+.value {
+    min-width: 150px;
+}
+
+.values .value .value {
+    font-size: xx-large;
+    font-weight: bolder;
+    font-family: 'Syncopate', sans-serif;
+}
+</style>
+<h1 class="main-title">Room 1</h1>
+<div class="dashboard">
+    <div class="panel light">
+        <div class="title">Light</div>
+        <div class="values">
+            <div class="value">
+            <?php if ($this->arrays->getValueDotted($this->data, 'light.data.intensity') > 200): ?>
+                <div class="value light-on">
+                    ON
+                </div>
+            <?php else: ?>
+                <div class="value light-off">
+                OFF
+                </div>
+            <?php endif ?>
+            </div>
+        </div>
+    </div>
+    <div class="panel DHT">
+        <div class="title">Inside</div>
+        <div class="values">
+            <div class="value">
+                <div class="value">
+                    <?= $this->arrays->getValueDotted($this->data, 'dht.data.temperature') ?>
+                </div>
+                <div class="label">
+                    <?= $this->arrays->getValueDotted($this->data, 'dht.metadata.units.temperature') ?>
+                </div>
+            </div>
+            <div class="value">
+                <div class="value">
+                    <?= $this->arrays->getValueDotted($this->data, 'dht.data.humidity') ?>
+                </div>
+                <div class="label">
+                    <?= $this->arrays->getValueDotted($this->data, 'dht.metadata.units.humidity') ?>
+                </div>
+            </div>
+<!--
+            <div class="value">
+                <div class="value">
+                    <?= $this->arrays->getValueDotted($this->data, 'dht.data.heatIndex') ?>
+                </div>
+                <div class="label">
+                    <?= $this->arrays->getValueDotted($this->data, 'dht.metadata.units.heatIndex') ?>
+                </div>
+            </div>
+-->
+        </div>
+    </div>
+    <div class="panel dallas">
+        <div class="title">Outside</div>
+        <div class="values">
+            <div class="value">
+                <div class="value">
+                    <?= $this->arrays->getValueDotted($this->data, 'dallas.data.temperature') ?>
+                </div>
+                <div class="label">
+                    <?= $this->arrays->getValueDotted($this->data, 'dallas.metadata.units.temperature') ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+setTimeout(function () {
+    window.location.reload();
+}, 5000);
+</script>
