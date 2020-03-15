@@ -12,6 +12,7 @@ use Klein\Klein;
 use Klein\Request;
 use SixtyNine\Helper\Arduino;
 use SixtyNine\Controller\SensorsController;
+use SixtyNine\Controller\AssetsController;
 
 const DB_URL = '';
 
@@ -27,7 +28,8 @@ try {
 }
 
 $arduino = new Arduino('/dev/ttyS1');
-$controller = new SensorsController($arduino);
+$sensorsController = new SensorsController($arduino);
+$assetsConroller = new AssetsController();
 
 $klein = new Klein();
 $request = Request::createFromGlobals();
@@ -55,8 +57,9 @@ $klein->respond(static function ($request, $response, $service, $app, $klein) {
     });
 });
 
-$klein->respond('GET', '/', [$controller, 'index']);
-$klein->respond('GET', '/sensors/[:id]', [$controller, 'sensors']);
+$klein->respond('GET', '/', [$sensorsController, 'index']);
+$klein->respond('GET', '/sensors/[:id]', [$sensorsController, 'sensors']);
+$klein->respond('GET', '/assets', [$assetsConroller, 'index']);
 
 $klein->respond(function($request, $response, $service, $app, $klein, $matched) {
     if (!$matched->count()) {
