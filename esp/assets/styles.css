@@ -1,0 +1,20 @@
+/*
+Minify (https://cssminifier.com/) and copy to stylesTemplate in include/templates.h
+*/
+h1 {
+    font-size: xx-large;
+    font-weight: bolder;
+    margin-bottom: 1.5em;
+}
+
+label {
+    font-weight: bold;
+}
+
+body {
+    padding: 1em;
+}
+
+section {
+    margin-bottom: 0.5em;
+}
