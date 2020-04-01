@@ -1,14 +1,17 @@
-<?php /** @noinspection UnNecessaryDoubleQuotesInspection */
+<?php
 
 namespace SixtyNine\Controller;
 
 use InvalidArgumentException;
+use Klein\Request;
+use Klein\Response;
+use Klein\ServiceProvider;
 
 class AssetsController
 {
     private $baseDir = __DIR__.'/../../../assets/';
 
-    public function index($request, $response, $service)
+    public function index(Request $request, Response $response, ServiceProvider $service)
     {
         $service->validateParam('file', 'Required file name')->notNull();
         $file = $request->paramsGet()->get('file');

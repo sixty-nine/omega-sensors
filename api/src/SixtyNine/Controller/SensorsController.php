@@ -2,7 +2,9 @@
 
 namespace SixtyNine\Controller;
 
-use GuzzleHttp\Client;
+use Klein\Request;
+use Klein\Response;
+use Klein\ServiceProvider;
 use SixtyNine\Helper\Arduino;
 use SixtyNine\Helper\Arrays;
 
@@ -15,7 +17,7 @@ class SensorsController
         $this->arduino = $arduino;
     }
 
-    public function index($request, $response, $service, $app)
+    public function index(Request $request, Response $response, ServiceProvider $service)
     {
         $lightsData = $this->arduino->getLight();
         $dhtData = $this->arduino->getDht();
@@ -31,7 +33,7 @@ class SensorsController
         ]);
     }
 
-    public function sensors($request, $response, $service, $app)
+    public function sensors(Request $request, Response $response, ServiceProvider $service)
     {
         $service->validateParam('id', 'Invalid ID')->isInt();
         $id = $request->paramsNamed()->get('id');

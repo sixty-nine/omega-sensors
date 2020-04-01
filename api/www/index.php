@@ -5,8 +5,12 @@ require_once(__DIR__.'/../vendor/autoload.php');
 define('APP_PATH', '/index.php');
 
 use Dotenv\Dotenv;
+use Dotenv\Exception\ValidationException;
+use Klein\App;
 use Klein\Klein;
 use Klein\Request;
+use Klein\Response;
+use Klein\ServiceProvider;
 use SixtyNine\Helper\Arduino;
 use SixtyNine\Controller\SensorsController;
 use SixtyNine\Controller\AssetsController;
@@ -33,8 +37,9 @@ $request = Request::createFromGlobals();
 $uri = $request->server()->get('REQUEST_URI');
 $request->server()->set('REQUEST_URI', substr($uri, strlen(APP_PATH)));
 
-$klein->respond(static function ($request, $response, $service, $app, $klein) {
-
+$klein->respond(static function (
+    Request $request, Response $response, ServiceProvider $service, App $app, Klein $klein
+) {
     $klein->onError(static function ($klein, $msg) {
         http_response_code(404);
         header('Content-Type: application/json');
